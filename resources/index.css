@@ -1,0 +1,286 @@
+body{
+  background-color: #F8F8F8;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding-bottom: 100px;
+}
+
+
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: height 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+nav{
+  position: fixed;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+}
+.navBar:hover{
+  height: 50vh;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  background-color: #111;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo svg {
+    position: fixed;
+    top: 5px;
+    left: 10px;
+    width: 100%;
+    height: 50px;
+    width: 50px;
+}
+
+.mainMenu ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.mainMenu li {
+  list-style: none;
+  margin: 0 10px;
+}
+
+.mainMenu li a {
+  text-decoration: none;
+  color: #333333;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.search form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: fixed;
+  top: 15px;
+  width: 20px;
+}
+
+.input {
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.heartSvg,
+.cartSvg {
+  margin-left: 10px;
+  height: 20px;
+  width: 20px;
+}
+
+.heartSvg svg,
+.cartSvg svg {
+  height: 25px;
+  width: 25px;
+  position: fixed;
+  top: 15px;
+}
+
+.newFeatured {
+  top: 15px; 
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  opacity: 0;
+  z-index: 1;
+  transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out; /* added opacity transition */
+}
+
+a{
+  text-decoration: none;
+  color: #7e7e7e;
+}
+
+.navContainer:hover .navBar {
+  height: 50vh;
+}
+
+.navContainer:hover .newFeatured {
+  opacity: 1;
+}
+
+.mainImg{
+  margin-top: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:120px;
+  position: absolute;
+  z-index: -999;
+}
+
+/* promotionBar */
+.promotionBar {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  background-color: #dfdede;
+  overflow: hidden;
+  margin-top: 150px;
+}
+
+#promotionList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  animation: slideLeft 10s linear infinite;
+}
+
+#promotionList li {
+  flex-shrink: 0;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-right: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#promotionList li:last-child {
+  border-right: none;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-100%);
+  }
+  95% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.mainImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+figcaption {
+  position: absolute;
+  transform: translateY(-50%);
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 30px;
+  margin-top: 1500px;
+}
+
+figcaption h3 {
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin: 0;
+  padding-top: 20px;
+}
+
+
+
+
+
+.peaguses {
+  margin-top: 1300px;
+  background-color: #f5f5f5;
+}
+
+h4 {
+  text-align: start;
+  margin-left: 100px;
+  margin-bottom: 30px;
+}
+
+.col img {
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .col {
+      flex-basis: 33.33%;
+  }
+}
+
+@media (max-width: 767px) {
+  .col {
+      flex-basis: 50%;
+  }
+}
+
+.productList{
+  overflow: scroll;
+}

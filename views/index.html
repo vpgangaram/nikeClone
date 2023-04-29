@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../resources/index.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <div class="container-fluid">
+            <div class="row">
+                <div  @mouseleave="subMenuKey = null" class="navContainer">
+                    <div class="navBar">
+                        <div class="logo">
+                            <svg aria-hidden="true" class="pre-logo-svg" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none"><path fill="currentColor" fill-rule="evenodd" d="M21 8.719L7.836 14.303C6.74 14.768 5.818 15 5.075 15c-.836 0-1.445-.295-1.819-.884-.485-.76-.273-1.982.559-3.272.494-.754 1.122-1.446 1.734-2.108-.144.234-1.415 2.349-.025 3.345.275.2.666.298 1.147.298.386 0 .829-.063 1.316-.19L21 8.719z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <div class="mainMenu">
+                            <nav>
+                                <ul>
+                                    <li v-for="(main, i) in navbarMenu.mainMenu" :key="i" @mouseover="subMenuKey = i">
+                                        <a href="#">{{main}}</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="search">
+                            <form class="form">
+                                <button>
+                                    <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
+                                        <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </button>
+                                <input class="input" placeholder="Type your text" required="" type="text">
+                            </form>
+                            <div class="heartSvg">
+                                <svg aria-hidden="true" class="pre-nav-design-icon" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none"><path stroke="currentColor" stroke-width="1.5" d="M16.794 3.75c1.324 0 2.568.516 3.504 1.451a4.96 4.96 0 010 7.008L12 20.508l-8.299-8.299a4.96 4.96 0 010-7.007A4.923 4.923 0 017.205 3.75c1.324 0 2.568.516 3.504 1.451l.76.76.531.531.53-.531.76-.76a4.926 4.926 0 013.504-1.451"></path></svg>
+                            </div>
+                            <div class="cartSvg">
+                                <svg aria-hidden="true" class="pre-nav-design-icon" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none"><path stroke="currentColor" stroke-width="1.5" d="M8.25 8.25V6a2.25 2.25 0 012.25-2.25h3a2.25 2.25 0 110 4.5H3.75v8.25a3.75 3.75 0 003.75 3.75h9a3.75 3.75 0 003.75-3.75V8.25H17.5"></path></svg>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div v-if="subMenuKey === 0" class="newFeatured"> 
+                        <div class="container-fluid">  
+                            <div class="row"> 
+                                <div class="col-lg-1"></div>                 
+                                <div class="col-lg-2" v-for="(sub, j) in navbarMenu.newFeatured" :key="j">
+                                    <table class="table table-borderless"style="font-size: 1.5vh;">                                            
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">{{j}}</th>
+                                            </tr>                                    
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(s, k) in sub" :key="k">
+                                                <td><a :href="s">{{s}}</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>               
+                                <div class="col-lg-1"></div>
+                            </div>
+                        </div>                                  
+                    </div>  
+                </div>
+                <div class="promotionBar">
+                    <ul id="promotionList">
+                        <li v-for="promotionKey, k in myPromotionKeys" :key="k" class="promotion-key">{{promotionKey}}<br></li>
+                        <li v-for="promotion, p in promotions" :key="p" class="promotion">{{promotion}}</li>
+                    </ul>              
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-fluid mainImg mt-100">
+                    <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_1824,c_limit/d0428f68-d545-4036-8458-2493ffdaa797/nike-just-do-it.jpg">
+                    <figcaption>
+                        <p>Nike Pegasus 40</p>
+                        <h3>The World Runs</h3>
+                        <h3>In Pegasus</h3>
+                        <p>"Meet the latest update to the shoe that’s been trusted by runners of all kinds for four decades."</p>
+                    </figcaption> 
+                </div>  
+            </div> 
+            <div class="row">
+                <div class="container-fluid peaguses">
+                    <div class="row">
+                        <h4>Welcome To The Pegasus Shop</h4>
+                        <div class="col-lg-4">
+                            <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_594,c_limit/1926120e-0327-42e2-82bf-cb2f0deb3cb4/nike-just-do-it.jpg">
+                        </div>
+                        <div class="col-lg-4 ">
+                            <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_594,c_limit/6a6914cd-3712-4e7e-85f8-a8fd01288248/nike-just-do-it.jpg">
+                        </div>
+                        <div class="col-lg-4 ">
+                            <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_594,c_limit/72f95063-c6b8-4309-a152-5b8ce04d11ce/nike-just-do-it.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row productList">
+                <br>   
+                <h4>Top Kicks Under ₹8,000</h4>
+                <div class="container-fluid">
+                    <div class="card" style="width: 18rem;" v-for="product,p in products" :key="p">
+                        <img :src="product.img" class="card-img-top" alt="product.name">
+                        <div class="card-body">
+                          <h5 class="card-title">{{product.name}}</h5>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="../resources/index.js"></script>
+</body>
+</html>
