@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="../resources/index.css">
     <title>Document</title>
 </head>
@@ -15,8 +15,8 @@
             <div class="row">
                 <div  @mouseleave="subMenuKey = null" class="navContainer">
                     <div class="navBar">
-                        <div class="logo">
-                            <svg aria-hidden="true" class="pre-logo-svg" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none"><path fill="currentColor" fill-rule="evenodd" d="M21 8.719L7.836 14.303C6.74 14.768 5.818 15 5.075 15c-.836 0-1.445-.295-1.819-.884-.485-.76-.273-1.982.559-3.272.494-.754 1.122-1.446 1.734-2.108-.144.234-1.415 2.349-.025 3.345.275.2.666.298 1.147.298.386 0 .829-.063 1.316-.19L21 8.719z" clip-rule="evenodd"></path></svg>
+                        <div class="logo" @click="view='homePage'; scrollToTop">
+                            <svg @click="view='homePage'" aria-hidden="true" class="pre-logo-svg" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none"><path fill="currentColor" fill-rule="evenodd" d="M21 8.719L7.836 14.303C6.74 14.768 5.818 15 5.075 15c-.836 0-1.445-.295-1.819-.884-.485-.76-.273-1.982.559-3.272.494-.754 1.122-1.446 1.734-2.108-.144.234-1.415 2.349-.025 3.345.275.2.666.298 1.147.298.386 0 .829-.063 1.316-.19L21 8.719z" clip-rule="evenodd"></path></svg>
                         </div>
                         <div class="mainMenu">
                             <nav>
@@ -74,51 +74,296 @@
                     </ul>              
                 </div>
             </div>
-            <div class="row">
-                <div class="container-fluid mainImg mt-100">
-                    <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_1824,c_limit/d0428f68-d545-4036-8458-2493ffdaa797/nike-just-do-it.jpg">
-                    <figcaption>
-                        <p>Nike Pegasus 40</p>
-                        <h3>The World Runs</h3>
-                        <h3>In Pegasus</h3>
-                        <p>"Meet the latest update to the shoe that’s been trusted by runners of all kinds for four decades."</p>
-                    </figcaption> 
-                </div>  
-            </div> 
-            <div class="row">
-                <div class="container-fluid peaguses">
+            <div v-if="view == 'homePage'">
+                <div class="row">
+                    <div class="container-fluid mainImg mt-100">
+                        <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_1824,c_limit/d0428f68-d545-4036-8458-2493ffdaa797/nike-just-do-it.jpg">
+                        <figcaption>
+                            <p>Nike Pegasus 40</p>
+                            <h3>The World Runs</h3>
+                            <h3>In Pegasus</h3>
+                            <p>"Meet the latest update to the shoe that’s been trusted by runners of all kinds for four decades."</p>
+                        </figcaption> 
+                    </div>  
+                </div> 
+                <div class="row">
+                    <div class="container-fluid peaguses">
+                        <div class="row">
+                            <h4>Welcome To The Pegasus Shop</h4>
+                            <div class="col-lg-4">
+                                <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_594,c_limit/1926120e-0327-42e2-82bf-cb2f0deb3cb4/nike-just-do-it.jpg">
+                            </div>
+                            <div class="col-lg-4 ">
+                                <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_594,c_limit/6a6914cd-3712-4e7e-85f8-a8fd01288248/nike-just-do-it.jpg">
+                            </div>
+                            <div class="col-lg-4 ">
+                                <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_594,c_limit/72f95063-c6b8-4309-a152-5b8ce04d11ce/nike-just-do-it.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row productList">
+                    <br>   
+                    <h4>Top Kicks Under ₹8,000</h4>    
+                    <div class="container-fluid">
+                    <div class="row">                
+                        <div class="d-flex flex-nowrap overflow-auto">
+                        <div class="card mr-10 col-lg-4 mr-10" v-for="(product, p) in products" :key="p" @click="view = 'productDetail'; scrollToTop">
+                            <img :src="product.img" class="card-img-top" alt="product.name">
+                            <div class="card-body">
+                            <h5 class="card-title">{{product.name}}</h5>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>             
+                </div> 
+            </div>                       
+        </div> 
+        <div class="container mt-100">
+            <div v-if="view == 'productDetail'">
+                <svg  @click="view='homePage'; scrollToTop" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+                <div class="row">
+                    <div class="col-lg-1">
+                    <div class="row d-flex d-inline">
+                        <div v-for="(product, p) in productDetails[1].img" :key="p">
+                        <img :src="product" style="width: 50px; height:50px; object-fit: cover;" @mouseover="enlargeImg=product">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-6">
+                    <img :src="enlargeImg" style="width: 500px; height:600px; object-fit: cover;">
+                    </div>
+                    <div class="col-lg-5">
+                        <h3>{{productDetails[1].name}}</h3>
+                        <small>{{productDetails[1].catg}}</small>
+                        <br><hr>
+                        <h3>MRP: {{productDetails[1].price}}</h3>
+                        <small>incl. of taxes<br>(Also includes all applicable duties)</small>
+                        <br><br><br>
+                        <p>Select Sizes</p>
+                        <div class="container">
+                            <form @submit.prevent="addToCart(selectedSize)">
+                                <div class="row">
+                                <div class="col-lg-3 box" v-for="sizes in productDetails[1].sizes">
+                                    <label>
+                                    <input type="radio"  v-model="selectedSize" name="size" :value="sizes" required>
+                                    {{sizes}}
+                                    </label>
+                                </div>
+                                </div>
+                                <hr>
+                                <button class="quantityButton btn btn-outline-light" @click.prevent="decrementQuantity">-</button>
+                                {{quantityOfSelectedProduct}}
+                                <button class="quantityButton btn btn-outline-light" @click.prevent="incrementQuantity">+</button>
+                                <hr>
+                                <br>
+                                <button type="submit" class="btn btn-dark addToCart" v-if="addToCartButton">Add To Cart</button>
+                                <button type="submit" @click.prevent="billCalculations" class="btn btn-success addToCart mt-2" v-else="">Go To Cart</button>
+                                <button type="button" class="btn btn-outline-dark favorite mt-2">Favorite</button>
+                            </form>                          
+                        </div>
+                        <br>
+                        <br>
+                        <div class="container">
+                            <p>We added a playful twist to the look of old-school basketball with this Nike Court Vision Low. Checked Swoosh logos pop against black synthetic leather for a retro look and feel—just like basketball shoes of the '80s. A durable rubber outsole adds traction while the low-cut collar keeps the design sleek and comfortable.</p>
+                            <br>
+                            <ul>
+                                <li>
+                                    Colour Shown: Black/Coconut Milk/University Red/Stadium Green
+                                </li>
+                                <br>
+                                <li>
+                                    Style: FD0321-010
+                                </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <div class="container" style="text-align: start;">
+                            <div class="row">
+                                <hr>
+                                <div class="col-lg-10">
+                                    <p>Delivery & Returns</p>
+                                </div>
+                                <div class="col-lg-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="row">                            
+                                <hr>
+                                <div class="col-lg-6">
+                                    <p>Reviews</p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                </svg>
+                                </div>
+                                <div class="col-lg-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <hr>
+                                <div class="col-lg-10">
+                                    <p>Product Information</p>
+                                </div>
+                                <div class="col-lg-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div v-if="view=='showCart'">
+                <div calss="container">
+                <svg  @click="view='homePage'" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+                <br><br>
                     <div class="row">
-                        <h4>Welcome To The Pegasus Shop</h4>
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <p>Free Delivery</p>
+                                <p>Applies to orders of ₹ 14 000.00 or more. </p>
+                            </div>
+                            <div class="row">
+                                <h4>Bag</h4>
+                                    <div class="row" v-for="product in productsInCart">
+                                        <div class="col-lg-3">
+                                            <img :src="product.img[0]" style="width: 150px; height: 150px;">
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <h5>{{product.name}}</h5>
+                                            <p>{{product.catg}}</p>
+                                            <p>Size: {{product.selectedSize}}    Quantity: {{product.quantity}}</p>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <h5>MRP: {{product.price}}</h5>
+                                        </div>
+                                    </div>  
+                            </div>
+                        </div>
                         <div class="col-lg-4">
-                            <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_594,c_limit/1926120e-0327-42e2-82bf-cb2f0deb3cb4/nike-just-do-it.jpg">
-                        </div>
-                        <div class="col-lg-4 ">
-                            <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_594,c_limit/6a6914cd-3712-4e7e-85f8-a8fd01288248/nike-just-do-it.jpg">
-                        </div>
-                        <div class="col-lg-4 ">
-                            <img src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_594,c_limit/72f95063-c6b8-4309-a152-5b8ce04d11ce/nike-just-do-it.jpg">
+                            <div class="container-fluid">
+                                <h4>Summary</h4>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h6>Sub Total:</h6>
+                                    </div>
+                                    <div class="col-lg-6">
+                                         ₹ {{bill[0]}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h6>Estimated Delivery & Handling:</h6>
+                                    </div>
+                                    <div class="col-lg-6">
+                                         ₹ {{bill[1]}}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h5>Total:</h5>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        ₹ {{bill[2]}}
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+
+                            <button @click="showPopup" class="btn btn-dark addToCart">Place Order</button>
+
+                            <div id="popup" @click="hidePopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999;">
+                                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); text-align:center; color:aliceblue">
+                                    <h2>Thank you!</h2>
+                                    <p>Your order has been placed.</p>
+                                    <button @click="hidePopup" class="btn btn-dark addToCart">Close</button>
+                                </div>
+                            </div>   
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row productList">
-                <br>   
-                <h4>Top Kicks Under ₹8,000</h4>
+        </div>
+        <footer>
                 <div class="container-fluid">
-                    <div class="card" style="width: 18rem;" v-for="product,p in products" :key="p">
-                        <img :src="product.img" class="card-img-top" alt="product.name">
-                        <div class="card-body">
-                          <h5 class="card-title">{{product.name}}</h5>
+                    <div class="row">
+                        <div class="col-lg-3 mt-5">
+                            <b>FIND A STORE</b><hr>
+                            <b>BECOME A MEMBER</b><hr>
+                            <b>SIGN Up FOR EMAIL</b><hr>
+                            <b>Send Us Feedback</b><hr>
+                            <b>STUDENT DISCOUNTS</b> <hr>   
                         </div>
-                      </div>
+                        <div class="col-lg-3 mt-5">
+                            <b>GET HELP</b><hr>
+                            <p>Order Status</p>
+                            <p>Delivery</p>
+                            <p>Returns</p>
+                            <p>Payment Options</p>
+                            <p>Contact Us On Nike.com Inquiries</p>
+                            <p>Contact Us On All Other Inquiries</p>
+                        </div>
+                        <div class="col-lg-3 mt-5">
+                            <b>ABOUT NIKE</b><hr>
+                            <p>News</p>
+                            <p>Careers</p>
+                            <p>Investors</p>
+                            <p>Sustainability</p>
+                            <br><br><br>
+                        </div>
+                        <div class="col-lg-3 mt-5 d-flex justify-content-top">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <svg class="social-link-icon" width="30px" fill="#111" height="30px" viewBox="0 0 24 24"><path d="M12 0C9.813 0 7.8.533 5.96 1.6A11.793 11.793 0 0 0 1.6 5.96C.533 7.8 0 9.813 0 12s.533 4.2 1.6 6.04a11.793 11.793 0 0 0 4.36 4.36C7.8 23.467 9.813 24 12 24s4.2-.533 6.04-1.6a11.793 11.793 0 0 0 4.36-4.36C23.467 16.2 24 14.187 24 12s-.533-4.2-1.6-6.04a11.793 11.793 0 0 0-4.36-4.36C16.2.533 14.187 0 12 0zm6 9.28v.4c0 1.387-.333 2.72-1 4a8.186 8.186 0 0 1-2.84 3.12c-1.333.853-2.827 1.28-4.48 1.28a8.535 8.535 0 0 1-4.56-1.28h.72c1.387 0 2.613-.427 3.68-1.28-.64 0-1.213-.2-1.72-.6-.507-.4-.867-.92-1.08-1.56l.56.16c.373 0 .64-.053.8-.16a2.67 2.67 0 0 1-1.72-1 2.913 2.913 0 0 1-.68-1.88c.427.267.88.4 1.36.4-.907-.533-1.36-1.36-1.36-2.48 0-.533.133-1.04.4-1.52.8.96 1.72 1.707 2.76 2.24a8.133 8.133 0 0 0 3.4.88c-.107-.16-.16-.4-.16-.72 0-.8.293-1.493.88-2.08s1.28-.88 2.08-.88 1.547.293 2.24.88c.48-.107 1.12-.347 1.92-.72-.213.747-.64 1.28-1.28 1.6H18c.747-.16 1.28-.32 1.6-.48-.533.693-1.067 1.253-1.6 1.68z"></path></svg>
+                                </div>
+                                <div class="col-lg-3">
+                                    <svg class="social-link-icon" width="30px" fill="#111" height="30px" viewBox="0 0 24 24"><path d="M12 0C9.813 0 7.8.533 5.96 1.6A11.793 11.793 0 0 0 1.6 5.96C.533 7.8 0 9.813 0 12s.533 4.2 1.6 6.04a11.793 11.793 0 0 0 4.36 4.36C7.8 23.467 9.813 24 12 24s4.2-.533 6.04-1.6a11.793 11.793 0 0 0 4.36-4.36C23.467 16.2 24 14.187 24 12s-.533-4.2-1.6-6.04a11.793 11.793 0 0 0-4.36-4.36C16.2.533 14.187 0 12 0zm3.12 12h-2v7.2H10.4V12H8.64V9.52h1.76V8c0-1.12.187-1.92.56-2.4.427-.587 1.2-.88 2.32-.88h2V7.2h-1.2c-.427 0-.693.067-.8.2-.107.133-.16.387-.16.76v1.2h2.16L15.12 12z"></path></svg>
+                                </div>
+                                <div class="col-lg-3">
+                                    <svg class="social-link-icon" width="30px" fill="#111" height="30px" viewBox="0 0 24 24"><path d="M11.28 17.6a.604.604 0 0 1-.2.24.43.43 0 0 1-.24.08c-.08 0-.133-.027-.16-.08a.557.557 0 0 1-.04-.24v-2.96h-.72v3.28a1 1 0 0 0 .12.52c.08.133.2.2.36.2.16 0 .307-.053.44-.16.133-.107.28-.24.44-.4v.48H12v-3.92h-.72v2.96zM6.96 14v-.8H9.6v.8h-.88v4.56h-.88V14h-.88zm4.96-4.72c-.107 0-.2-.04-.28-.12a.384.384 0 0 1-.12-.28v-2.4c0-.053.027-.107.08-.16.053-.053.147-.08.28-.08.133 0 .24.027.32.08a.27.27 0 0 1 .12.24v2.32c0 .107-.04.2-.12.28a.384.384 0 0 1-.28.12zm2 8.32c0-.64.027-1.307.08-2 0-.107-.04-.2-.12-.28-.08-.08-.16-.12-.24-.12h-.12l-.24.16v2.4l.24.16.16.08c.107 0 .173-.027.2-.08.027-.053.04-.16.04-.32zm.08-3.04c.213 0 .387.08.52.24.133.16.2.4.2.72v2.24c0 .267-.053.48-.16.64a.422.422 0 0 1-.44.2 2.1 2.1 0 0 1-.48-.12.506.506 0 0 1-.28-.24v.32h-.8V13.2h.8v1.76c.107-.107.213-.2.32-.28a.532.532 0 0 1 .32-.12zm3.92 5.12c.267-.213.427-.907.48-2.08.053-.587.107-1.147.16-1.68 0-.48-.053-1.013-.16-1.6-.107-1.173-.28-1.893-.52-2.16-.24-.267-1.267-.453-3.08-.56l-2.64-.08-2.72.08c-1.813.107-2.84.293-3.08.56-.24.267-.413.987-.52 2.16a16.07 16.07 0 0 0-.08 1.6c0 .533.027 1.093.08 1.68.107 1.173.28 1.88.52 2.12.24.24 1.267.44 3.08.6l2.72.08 2.64-.08c1.813-.16 2.853-.347 3.12-.56v-.08zM8.4 4h-.96l1.12 3.6v2.24h.96v-2.4L10.64 4h-.96l-.56 2.32h-.08L8.4 4zm2.32 2.56V8.8c0 .373.107.667.32.88.213.213.507.32.88.32s.667-.107.88-.32c.213-.213.32-.507.32-.88V6.56c0-.32-.107-.587-.32-.8-.213-.213-.507-.32-.88-.32s-.667.107-.88.32c-.213.213-.32.48-.32.8zm3.12-.96v3.6a1 1 0 0 0 .12.52c.08.133.213.2.4.2.187 0 .36-.04.52-.12.16-.08.32-.2.48-.36v.48h.88V5.6h-.88v3.2a.523.523 0 0 1-.24.24.645.645 0 0 1-.28.08c-.08 0-.133-.013-.16-.04-.027-.027-.04-.093-.04-.2V5.52h-.8v.08zM12 0c2.187 0 4.2.533 6.04 1.6a11.793 11.793 0 0 1 4.36 4.36C23.467 7.8 24 9.813 24 12s-.533 4.2-1.6 6.04a11.793 11.793 0 0 1-4.36 4.36C16.2 23.467 14.187 24 12 24s-4.2-.533-6.04-1.6a11.793 11.793 0 0 1-4.36-4.36C.533 16.2 0 14.187 0 12s.533-4.2 1.6-6.04A11.793 11.793 0 0 1 5.96 1.6C7.8.533 9.813 0 12 0zm4.56 16.08l-.08-.4c0-.16-.027-.28-.08-.36a.27.27 0 0 0-.24-.12.27.27 0 0 0-.24.12c-.053.08-.08.2-.08.36v.4h.72zm-.32-1.52c.32 0 .573.093.76.28.187.187.28.467.28.84v.96h-1.44v.8c0 .16.027.28.08.36.053.08.147.12.28.12.133 0 .227-.04.28-.12.053-.08.08-.227.08-.44v-.16h.72v.24c0 .373-.093.667-.28.88-.187.213-.453.32-.8.32-.347 0-.613-.107-.8-.32-.187-.213-.28-.507-.28-.88v-1.76c0-.32.107-.587.32-.8.213-.213.48-.32.8-.32z"></path></svg>
+                                </div>
+                                <div class="col-lg-3">
+                                    <svg class="social-link-icon" width="30px" fill="#111" height="30px" viewBox="0 0 24 24"><path d="M16 12.48a4.723 4.723 0 0 1-.56 1.48 3.93 3.93 0 0 1-1.04 1.16 3.428 3.428 0 0 1-1.92.68 3.628 3.628 0 0 1-1.96-.48 3.414 3.414 0 0 1-1.4-1.48c-.48-.96-.587-1.973-.32-3.04H7.68l.08 5.52c0 .107.04.213.12.32.08.107.173.16.28.16h8.32c.107 0 .213-.053.32-.16.107-.107.16-.213.16-.32V10.8h-1.12c.16.533.213 1.093.16 1.68zm-3.68 2c.64 0 1.2-.24 1.68-.72s.72-1.053.72-1.72a2.56 2.56 0 0 0-.68-1.76c-.453-.507-1.013-.76-1.68-.76s-1.24.24-1.72.72-.72 1.053-.72 1.72.227 1.253.68 1.76c.453.507 1 .76 1.64.76h.08zm4.16-7.6h-1.12c-.107 0-.213.053-.32.16-.107.107-.16.213-.16.32v1.36c.107.213.267.32.48.32h1.12c.16 0 .28-.053.36-.16a.532.532 0 0 0 .12-.32v-1.2c0-.107-.053-.213-.16-.32-.107-.107-.213-.16-.32-.16zM12 0C9.813 0 7.8.533 5.96 1.6A11.793 11.793 0 0 0 1.6 5.96C.533 7.8 0 9.813 0 12s.533 4.2 1.6 6.04a11.793 11.793 0 0 0 4.36 4.36C7.8 23.467 9.813 24 12 24s4.2-.533 6.04-1.6a11.793 11.793 0 0 0 4.36-4.36C23.467 16.2 24 14.187 24 12s-.533-4.2-1.6-6.04a11.793 11.793 0 0 0-4.36-4.36C16.2.533 14.187 0 12 0zm6.24 16.88l-.08.08v.08a.926.926 0 0 1-.28.68 1.3 1.3 0 0 1-.68.36H7.52a.871.871 0 0 1-.68-.32 1.536 1.536 0 0 1-.36-.72l-.08-.16.08-9.84c0-.267.093-.507.28-.72.187-.213.413-.347.68-.4h9.68a1.3 1.3 0 0 1 .68.36 1.3 1.3 0 0 1 .36.68l.08 9.92z"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="footerBar row" style="background-color: aqua; display:block">
+
                 </div>
-            </div>
-        </div>     
+        </footer>    
     </div>
     
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="../resources/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  <script src="../resources/index.js"></script>
 </body>
 </html>
